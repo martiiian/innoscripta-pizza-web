@@ -1,3 +1,5 @@
+if (process.env.NODE_ENV !== 'production') require('dotenv').config()
+
 export default {
   mode: 'universal',
   /*
@@ -45,11 +47,9 @@ export default {
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv'
   ],
-  /*
-   ** Axios module configuration
-   ** See https://axios.nuxtjs.org/options
-   */
-  axios: {},
+  axios: {
+    baseURL: process.env.API_URL
+  },
   /*
    ** Build configuration
    */
