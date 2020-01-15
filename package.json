@@ -4,6 +4,10 @@
   "description": "Pizza store",
   "author": "martiiian",
   "private": true,
+  "engines": {
+    "node": "12.13.0",
+    "yarn": "1.19.x"
+  },
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
