@@ -1,19 +1,24 @@
 <template>
-  <div class="hello">
-    {{ result }}
+  <div class="home container-fluid">
+    <Header />
+    <Content />
   </div>
 </template>
 
 <script>
+import Header from '@/components/header/Header'
+import Content from '@/components/home/Content'
+
 export default {
-  data() {
-    return {
-      result: ''
-    }
-  },
-  async mounted() {
-    const { data: result } = await this.$axios.get('/test')
-    this.result = result
+  components: {
+    Header,
+    Content
   }
 }
 </script>
+
+<style lang="scss">
+.home {
+  padding: 0;
+}
+</style>
