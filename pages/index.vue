@@ -13,6 +13,9 @@ export default {
   components: {
     Header,
     Content
+  },
+  async fetch({ store }) {
+    await store.dispatch('goods/LOAD_GOODS')
   }
 }
 </script>
