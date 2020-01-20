@@ -2,20 +2,23 @@
   <div class="home container-fluid">
     <Header />
     <Content />
+    <Cart />
   </div>
 </template>
 
 <script>
 import Header from '@/components/header/Header'
+import Cart from '@/components/cart/Cart'
 import Content from '@/components/home/Content'
 
 export default {
   components: {
     Header,
-    Content
+    Content,
+    Cart
   },
   async fetch({ store }) {
-    await store.dispatch('goods/LOAD_GOODS')
+    await store.dispatch('goods/load')
   }
 }
 </script>

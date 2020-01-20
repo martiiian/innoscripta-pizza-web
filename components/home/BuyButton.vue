@@ -1,11 +1,23 @@
 <template>
-  <button class="buy-button">
-    <span class="buy-button__text">buy</span>
+  <button
+    :class="{ 'buy-button_in-cart': isAddedToCart }"
+    class="buy-button"
+    @click="$emit('clicked')"
+  >
+    <span v-show="isAddedToCart" class="buy-button__in-cart-text">
+      already in cart
+    </span>
+
+    <span class="buy-button__text">
+      {{ isAddedToCart ? '+++' : 'buy' }}
+    </span>
+
     <img
       src="~/assets/images/icons/buy_arrow.svg"
       alt=""
       class="buy-button__arrow"
     />
+
     <img
       src="~/assets/images/icons/buy_cart.svg"
       alt=""
@@ -15,7 +27,14 @@
 </template>
 
 <script>
-export default {}
+export default {
+  props: {
+    isAddedToCart: {
+      type: Boolean,
+      default: false
+    }
+  }
+}
 </script>
 
 <style lang="scss">
@@ -25,13 +44,26 @@ export default {}
   height: 55px;
   border: none;
   background: $orange-color;
-  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.74);
+  box-shadow: 0 4px 0 rgba(189, 16, 16, 0.74);
   border-radius: 10px;
   transition: 0.5s ease box-shadow;
   cursor: pointer;
   position: relative;
+  &_in-cart {
+    color: white;
+    background: #4ebf4e;
+    box-shadow: 0 4px 0 green;
+  }
   &:hover {
     box-shadow: none;
+  }
+  &__in-cart-text {
+    color: $dark-color;
+    position: absolute;
+    top: -13px;
+    width: 100%;
+    left: 0;
+    font-size: 0.7em;
   }
   &__text {
     font-family: VampiroOne, Helvetica, sans-serif;
@@ -39,6 +71,7 @@ export default {}
     left: 30px;
     top: 8px;
     font-size: 24px;
+    color: $white-color;
   }
   &__arrow {
     position: absolute;
@@ -46,9 +79,10 @@ export default {}
     left: 24px;
   }
   &__cart {
+    transform: rotate(-40deg);
     position: absolute;
-    top: 0;
-    right: 12px;
+    top: 3px;
+    right: 6px;
     width: 45px;
     height: 49px;
   }

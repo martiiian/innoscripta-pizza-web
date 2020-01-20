@@ -16,25 +16,69 @@
       <div class="good__price">
         <div class="good__from">from</div>
 
-        {{ good.price || 100 }}<span class="good__currency">rub.</span>
+        {{ defaultPrice }}<span class="good__currency">rub.</span>
       </div>
 
-      <BuyButton />
+      <BuyButton :is-added-to-cart="good.isAddedToCart" @clicked="openPopup" />
     </div>
+
+    <ToCartPopup
+      :is-open="popupIsOpen"
+      :good="good"
+      @popup-canceled="closePopup"
+      @ok-clicked="addToCart"
+    />
   </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import BuyButton from '@/components/home/BuyButton'
+import ToCartPopup from '@/components/home/ToCartPopup'
 
 export default {
   components: {
-    BuyButton
+    BuyButton,
+    ToCartPopup
   },
   props: {
     good: {
       type: Object,
       default: () => ({})
+    }
+  },
+  data() {
+    return {
+      popupIsOpen: false
+    }
+  },
+  computed: {
+    defaultPrice() {
+      try {
+        return this.good.sizes[0].price
+      } catch (e) {
+        return 0
+      }
+    }
+  },
+  methods: {
+    ...mapActions({
+      ADD_TO_CART: 'cart/add'
+    }),
+    openPopup() {
+      this.popupIsOpen = true
+    },
+    closePopup() {
+      this.popupIsOpen = false
+    },
+    addToCart(productData) {
+      this.ADD_TO_CART({
+        ...productData,
+        payload: {
+          id: this.good.id
+        }
+      })
+      this.popupIsOpen = false
     }
   }
 }
@@ -45,13 +89,14 @@ export default {
 
 .good {
   width: 33.3%;
-  padding: 0 7% 6% 7%;
+  padding: 0 7% 100px 7%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  transition: 0.4s ease transform;
+  position: relative;
+  transition: 0.2s ease transform;
   &:hover {
-    transform: translateY(-20px);
+    transform: translateY(-5px);
   }
   &__ingredients {
     min-height: 130px;

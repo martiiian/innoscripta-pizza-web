@@ -15,7 +15,7 @@ export default {
 
   computed: {
     ...mapGetters({
-      goods: 'goods/all'
+      goods: 'goods/allWithData'
     })
   }
 }
@@ -23,6 +23,8 @@ export default {
 
 <style lang="scss">
 .good-list {
+  justify-content: flex-start;
+  align-items: flex-start;
   margin-top: -60px;
   display: flex;
   flex-wrap: wrap;

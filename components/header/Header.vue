@@ -12,8 +12,33 @@
       </div>
     </div>
     <div class="header__icons">
-      <button class="header-icon header-icon_type_cart">
-        <img src="~assets/images/icons/cart.svg" alt="cart" />
+      <button
+        :class="{ 'header-icon_animated': cartIconAnimate }"
+        class="header-icon header-icon_type_cart"
+        @click="toggleCartVisibility"
+      >
+        <img
+          v-show="!cartIsVisible"
+          width="24"
+          height="24"
+          src="~assets/images/icons/cart.svg"
+          alt="cart"
+        />
+
+        <img
+          v-show="cartIsVisible"
+          width="24"
+          height="24"
+          src="~assets/images/icons/close_white.svg"
+          alt="cart"
+        />
+
+        <span
+          v-show="countProductsInCart > 0 && !cartIsVisible"
+          class="header-icon__cart-sum"
+        >
+          {{ countProductsInCart }}
+        </span>
       </button>
 
       <button class="header-icon header-icon_type_login">
@@ -24,7 +49,34 @@
 </template>
 
 <script>
-export default {}
+import { mapGetters, mapActions } from 'vuex'
+
+export default {
+  data() {
+    return {
+      cartIconAnimate: false
+    }
+  },
+  computed: {
+    ...mapGetters({
+      countProductsInCart: 'cart/count',
+      cartIsVisible: 'cart/isVisible'
+    })
+  },
+  watch: {
+    countProductsInCart(val, oldVal) {
+      if (val > oldVal) {
+        this.cartIconAnimate = true
+        setTimeout(() => (this.cartIconAnimate = false), 600)
+      }
+    }
+  },
+  methods: {
+    ...mapActions({
+      toggleCartVisibility: 'cart/toggleVisibility'
+    })
+  }
+}
 </script>
 
 <style lang="scss">
@@ -53,7 +105,8 @@ export default {}
     align-items: flex-start;
   }
   &__icons {
-    position: absolute;
+    z-index: 101;
+    position: fixed;
     width: 50px;
     height: 200px;
     right: 20px;
@@ -82,17 +135,48 @@ export default {}
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
   &:hover {
     opacity: 0.8;
+  }
+  &_animated {
+    img {
+      animation: put-to-cart 0.3s ease infinite;
+    }
+  }
+  &__cart-sum {
+    position: absolute;
+    bottom: -8px;
+    padding: 2px 5px;
+    background: $dark-color;
+    border-radius: 5px;
+    font-size: 0.8em;
+    color: $white-color;
+    font-weight: bold;
   }
   &_type {
     &_cart {
       background: $orange-color;
     }
     &_login {
+      border: 1px solid $light-gray-color;
       background: $white-color;
       margin-top: 20px;
     }
+  }
+}
+@keyframes put-to-cart {
+  25% {
+    transform: rotate(-10deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  75% {
+    transform: rotate(10deg);
+  }
+  100% {
+    transform: rotate(0deg);
   }
 }
 </style>
