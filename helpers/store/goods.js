@@ -6,7 +6,7 @@
 export function findProductInBasket(basketProducts, productId) {
   try {
     return basketProducts.find(
-      (basketProduct) => basketProduct.payload.id === productId
+      (basketProduct) => basketProduct.productId === productId
     )
   } catch (e) {
     return false

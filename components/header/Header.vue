@@ -11,9 +11,10 @@
         </div>
       </div>
     </div>
+
     <div class="header__icons">
       <button
-        :class="{ 'header-icon_animated': cartIconAnimate }"
+        :class="{ 'header-icon_animated': cartIconAnimate && !cartIsVisible }"
         class="header-icon header-icon_type_cart"
         @click="toggleCartVisibility"
       >

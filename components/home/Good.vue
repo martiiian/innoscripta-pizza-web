@@ -74,9 +74,7 @@ export default {
     addToCart(productData) {
       this.ADD_TO_CART({
         ...productData,
-        payload: {
-          id: this.good.id
-        }
+        productId: this.good.id
       })
       this.popupIsOpen = false
     }

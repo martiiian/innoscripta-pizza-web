@@ -27,7 +27,7 @@ export const actions = {
   add({ commit, state, dispatch }, newProduct) {
     const existProduct = getProductData(
       state.goods,
-      newProduct.payload.id,
+      newProduct.productId,
       'productId'
     )
 
@@ -44,11 +44,17 @@ export const actions = {
         name: 'goods',
         value: {
           ...newProduct,
-          id: `${newProduct.payload.id}${newProduct.sizeId}salt`,
-          productId: newProduct.payload.id
+          id: `${newProduct.productId}${newProduct.sizeId}salt`
         }
       })
     }
+  },
+
+  reset({ commit }) {
+    commit('SET', {
+      name: 'goods',
+      value: []
+    })
   },
 
   delete({ commit }, id) {
@@ -59,10 +65,10 @@ export const actions = {
     })
   },
 
-  update({ commit }, { id, data }) {
+  update({ commit }, data) {
     commit('INNER_UPDATE_BY_ID', {
       name: 'goods',
-      id,
+      id: data.id,
       newValue: data
     })
   }

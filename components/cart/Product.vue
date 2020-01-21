@@ -51,7 +51,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      UPDATE_PRODUCT: 'cart/update',
+      updateProduct: 'cart/update',
       DELETE_PRODUCT: 'cart/delete'
     }),
 
@@ -65,13 +65,6 @@ export default {
         id: this.product.id,
         productId: this.product.payload.id,
         sizeId: this.product.sizeData.id
-      })
-    },
-
-    updateProduct(data) {
-      this.UPDATE_PRODUCT({
-        id: this.product.id,
-        data
       })
     }
   }

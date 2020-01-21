@@ -17,10 +17,14 @@
       <div class="cart-amount__sum">{{ sum }}<span>rub.</span></div>
     </div>
 
-    <button :disabled="sum === 0" class="cart__order-button">
+    <button
+      :disabled="sum === 0"
+      class="cart__order-button"
+      @click="showOrders"
+    >
       Order
       <img
-        src="~assets/images/icons/cart_order_arrow.svg"
+        src="~assets/images/icons/arrow.svg"
         class="cart__order-arrow"
         alt="arrow"
       />
@@ -29,7 +33,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import Product from '@/components/cart/Product'
 
 export default {
@@ -41,6 +45,11 @@ export default {
       products: 'cart/allWithData',
       isVisible: 'cart/isVisible',
       sum: 'cart/sum'
+    })
+  },
+  methods: {
+    ...mapActions({
+      showOrders: 'orders/toggleVisibility'
     })
   }
 }
@@ -65,9 +74,10 @@ export default {
     font-size: 36px;
   }
   &__order-arrow {
+    transform: rotate(90deg);
     transition: 0.4s ease transform;
     position: absolute;
-    right: 84px;
+    right: 40px;
     top: 0;
     bottom: 0;
     margin: auto;
@@ -88,7 +98,7 @@ export default {
     padding-left: 20px;
     &:hover {
       .cart__order-arrow {
-        transform: translateX(40px);
+        transform: rotate(90deg) translateY(-20px);
       }
     }
     &[disabled] {
@@ -96,7 +106,7 @@ export default {
       background: #9b9b9b;
       &:hover {
         .cart__order-arrow {
-          transform: translateX(0px);
+          transform: translateX(0px) rotate(90deg);
         }
       }
     }
