@@ -1,0 +1,18 @@
+.summary-block {
+  &__text,
+  &__value {
+    font-size: 24px;
+    &_big {
+      font-family: WorkSansBold, Helvetica, sans-serif;
+      font-size: 30px;
+    }
+  }
+  &__value {
+    text-align: right;
+    font-family: WorkSansBold, Helvetica, sans-serif;
+    span {
+      font-family: WorkSansRegular, Helvetica, sans-serif;
+      font-size: 0.6em;
+    }
+  }
+}

@@ -19,18 +19,9 @@
         @click="toggleCartVisibility"
       >
         <img
-          v-show="!cartIsVisible"
           width="24"
           height="24"
           src="~assets/images/icons/cart.svg"
-          alt="cart"
-        />
-
-        <img
-          v-show="cartIsVisible"
-          width="24"
-          height="24"
-          src="~assets/images/icons/close_white.svg"
           alt="cart"
         />
 
@@ -40,10 +31,6 @@
         >
           {{ countProductsInCart }}
         </span>
-      </button>
-
-      <button class="header-icon header-icon_type_login">
-        <img src="~assets/images/icons/login.svg" alt="login" />
       </button>
     </div>
   </header>
@@ -106,7 +93,7 @@ export default {
     align-items: flex-start;
   }
   &__icons {
-    z-index: 101;
+    z-index: 100;
     position: fixed;
     width: 50px;
     height: 200px;

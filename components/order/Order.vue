@@ -1,19 +1,12 @@
 <template>
-  <div v-if="isVisible" class="order">
-    <div class="order__close" @click="closeRightSidebar">
-      <img
-        src="~assets/images/icons/close_white.svg"
-        width="24"
-        height="24"
-        alt="close"
-      />
-    </div>
+  <div v-if="isVisible" class="order right-block">
+    <CloseRightBlockButton @clicked="closeRightSidebar" />
 
-    <div class="order__title">
+    <div class="right-block__title">
       Order information
     </div>
 
-    <div class="order__content">
+    <div class="order__content right-block__content">
       <div class="row">
         <OrderInput
           v-model="name"
@@ -66,82 +59,32 @@
       </div>
     </div>
 
-    <div v-if="goodsSum" class="order-summary">
-      <div class="row">
-        <span class="order-summary__text col-md-6">
-          goods
-        </span>
+    <div class="right-block__bottom">
+      <div v-if="goodsSum" class="order-summary right-block__bottom-text">
+        <div class="row">
+          <span class="summary-block__text col-md-6">
+            goods
+          </span>
 
-        <span class="order-summary__value col-md-6">
-          {{ goodsSum }}<span>rub</span>
-        </span>
+          <span class="summary-block__value col-md-6">
+            {{ goodsSum }}<span>rub</span>
+          </span>
+        </div>
+
+        <div class="row">
+          <span class="summary-block__text col-md-6">
+            delivery
+          </span>
+
+          <span class="summary-block__value col-md-6">
+            {{ deliveryPrice }}<span>rub</span>
+          </span>
+        </div>
+
+        <AmountBlock :sum="sum"></AmountBlock>
       </div>
 
-      <div class="row">
-        <span class="order-summary__text col-md-6">
-          delivery
-        </span>
-
-        <span class="order-summary__value col-md-6">
-          {{ deliveryPrice }}<span>rub</span>
-        </span>
-      </div>
-
-      <div class="row">
-        <span class="order-summary__text order-summary__text_big col-md-6">
-          Amount
-        </span>
-
-        <span class="order-summary__value order-summary__value_big col-md-6">
-          {{ sum }}<span>rub</span>
-        </span>
-      </div>
-    </div>
-
-    <div class="order__buttons">
-      <div
-        v-if="status === 'success'"
-        class="order__success-block order__button"
-      >
-        <span>Success!</span>
-        <button>to orders</button>
-        <img
-          src="~assets/images/icons/success.svg"
-          class="order__button-icon"
-          alt="success icon"
-          width="24"
-          height="24"
-        />
-      </div>
-
-      <button
-        v-if="status !== 'success'"
-        class="order__to-cart-button order__button"
-        @click="toggleOrderVisibility"
-      >
-        Cart
-        <img
-          src="~assets/images/icons/arrow.svg"
-          class="order__to-cart-button-icon order__button-icon"
-          alt="arrow"
-        />
-      </button>
-
-      <button
-        v-if="status !== 'success'"
-        class="order__send-button order__button"
-        :disabled="status === 'loading'"
-        :class="{ 'order__send-button_sending': status === 'loading' }"
-        @click="sendOrder"
-      >
-        {{ status === 'loading' ? 'Sending...' : 'Send' }}
-        <img
-          v-show="status === 'preparing' || status === 'fail'"
-          src="~assets/images/icons/arrow.svg"
-          class="order__send-button-icon order__button-icon"
-          alt="arrow"
-        />
-      </button>
+      <OrderBottomButtons :status="status" @send-clicked="sendOrder" />
     </div>
   </div>
 </template>
@@ -151,11 +94,17 @@ import { mapGetters, mapActions } from 'vuex'
 import { mapPropsModels } from '@/helpers/mapPropsModelsHelper'
 import { orderFormValidationRules } from '@/validator/rules/orderForm'
 import { validator, hasValidationErrors } from '@/validator/validator'
+import AmountBlock from '@/components/AmountBlock'
+import OrderBottomButtons from '@/components/order/OrderBottomButtons'
 import OrderInput from '@/components/order/Input'
+import CloseRightBlockButton from '@/components/CloseRightBlockButton'
 
 export default {
   components: {
-    OrderInput
+    AmountBlock,
+    OrderInput,
+    OrderBottomButtons,
+    CloseRightBlockButton
   },
   data() {
     return {
@@ -240,29 +189,9 @@ export default {
 @import '~assets/styles/variables.scss';
 
 .order {
-  // todo copypaste
-  padding: 0;
-  position: fixed;
-  width: 35%;
-  height: 100vh;
   background: $dark-color;
-  right: 0;
   z-index: 102;
-  top: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  &__close {
-    cursor: pointer;
-    position: fixed;
-    right: 23px;
-    top: 23px;
-    padding: 10px;
-  }
   &__content {
-    flex-grow: 10;
-    overflow-y: auto;
-    overflow-x: hidden;
     padding-left: 20px;
   }
   &__delivery-delimeter {
@@ -283,32 +212,6 @@ export default {
       height: 1px;
       background: white;
     }
-  }
-  &__title {
-    padding-top: 20px;
-    padding-left: 15px;
-    margin-bottom: 18px;
-    color: $white-color;
-    font-family: WorkSansBold, Helvetica, sans-serif;
-    font-weight: normal;
-    font-size: 36px;
-  }
-  &__buttons {
-    z-index: 120;
-    width: 100%;
-    bottom: 0;
-    right: 0;
-    height: 57px;
-    display: flex;
-  }
-  &__button {
-    color: $white-color;
-    font-family: WorkSansBold, Helvetica, sans-serif;
-    font-size: 36px;
-    display: flex;
-    justify-content: space-between;
-    padding: 0 20px;
-    align-items: center;
   }
   &__to-cart-button {
     width: 30%;
@@ -349,11 +252,7 @@ export default {
   }
   &__send-button {
     width: 70%;
-    height: 57px;
-    cursor: pointer;
-    border: none;
     background: $green-color;
-    text-align: left;
     &:hover {
       .order__send-button-icon {
         transform: rotate(90deg) translateY(-6px);
@@ -385,30 +284,6 @@ export default {
 }
 
 .order-summary {
-  flex-grow: 1;
-  margin-top: 20px;
   color: $white-color;
-  width: calc(100% - 32px);
-  padding-bottom: 9px;
-  padding-left: 15px;
-  .row {
-    justify-content: space-between;
-  }
-  &__text,
-  &__value {
-    font-size: 24px;
-    &_big {
-      font-family: WorkSansBold, Helvetica, sans-serif;
-      font-size: 30px;
-    }
-  }
-  &__value {
-    text-align: right;
-    font-family: WorkSansBold, Helvetica, sans-serif;
-    span {
-      font-family: WorkSansRegular, Helvetica, sans-serif;
-      font-size: 0.6em;
-    }
-  }
 }
 </style>
