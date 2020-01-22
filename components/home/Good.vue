@@ -8,8 +8,18 @@
       {{ good.name }}
     </div>
 
-    <div class="good__ingredients">
+    <div class="good__description">
       {{ good.description }}
+    </div>
+
+    <div class="good__ingredients">
+      <ul class="ingredients">
+        <Ingredient
+          v-for="ingredient in good.ingredients"
+          :key="ingredient.id"
+          :ingredient="ingredient"
+        />
+      </ul>
     </div>
 
     <div class="good__bottom">
@@ -34,12 +44,14 @@
 <script>
 import { mapActions } from 'vuex'
 import BuyButton from '@/components/home/BuyButton'
+import Ingredient from '@/components/home/Ingredient'
 import ProductImage from '@/components/ProductImage'
 import ToCartPopup from '@/components/home/ToCartPopup'
 
 export default {
   components: {
     BuyButton,
+    Ingredient,
     ProductImage,
     ToCartPopup
   },
@@ -99,7 +111,6 @@ export default {
     transform: translateY(-5px);
   }
   &__ingredients {
-    min-height: 130px;
     padding-top: 15px;
   }
   &__name {
@@ -108,6 +119,10 @@ export default {
     text-align: center;
     font-family: Unkempt, Helvetica, sans-serif;
     font-size: 36px;
+  }
+  &__description {
+    padding-top: 15px;
+    text-align: center;
   }
   &__price {
     color: $dark-color;
@@ -146,5 +161,12 @@ export default {
     justify-content: space-between;
     padding-top: 20px;
   }
+}
+.ingredients {
+  color: $dark-color;
+  padding: 10px 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 </style>
