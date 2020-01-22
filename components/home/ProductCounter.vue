@@ -11,7 +11,7 @@
       :value="productCount"
       type="number"
       class="product-counter__input"
-      @input="updateCounterValue($event.target.value)"
+      @input="updateCounterValue(+$event.target.value)"
     />
 
     <button

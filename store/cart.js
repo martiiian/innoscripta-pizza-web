@@ -33,11 +33,8 @@ export const actions = {
 
     if (existProduct && existProduct.sizeId === newProduct.sizeId) {
       dispatch('update', {
-        id: existProduct.id,
-        data: {
-          ...existProduct,
-          count: newProduct.count + existProduct.count
-        }
+        ...existProduct,
+        count: newProduct.count + existProduct.count
       })
     } else {
       commit('PUSH', {
