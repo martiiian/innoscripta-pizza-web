@@ -1,7 +1,7 @@
 <template>
   <div class="good">
     <div class="good__image">
-      <img src="/alfredo.jpg" alt="alfredo" />
+      <img :src="good.image_name" :alt="good.name" />
     </div>
 
     <div class="good__name">
