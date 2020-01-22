@@ -1,7 +1,7 @@
 <template>
   <div class="good">
     <div class="good__image">
-      <img :src="good.image_name" :alt="good.name" />
+      <ProductImage :product="good" />
     </div>
 
     <div class="good__name">
@@ -34,11 +34,13 @@
 <script>
 import { mapActions } from 'vuex'
 import BuyButton from '@/components/home/BuyButton'
+import ProductImage from '@/components/ProductImage'
 import ToCartPopup from '@/components/home/ToCartPopup'
 
 export default {
   components: {
     BuyButton,
+    ProductImage,
     ToCartPopup
   },
   props: {

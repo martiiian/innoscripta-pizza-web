@@ -1,7 +1,7 @@
 <template>
   <div class="cart-product">
     <div class="cart-product__image">
-      <img src="/alfredo.jpg" alt="alfredo" />
+      <ProductImage :product="product.payload" />
 
       <div class="cart-product__size">
         {{ product.sizeData.name }} <span>cm</span>
@@ -38,10 +38,12 @@
 <script>
 import { mapActions } from 'vuex'
 import ProductCounter from '@/components/home/ProductCounter'
+import ProductImage from '@/components/ProductImage'
 
 export default {
   components: {
-    ProductCounter
+    ProductCounter,
+    ProductImage
   },
   props: {
     product: {
