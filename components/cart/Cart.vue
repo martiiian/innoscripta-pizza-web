@@ -44,6 +44,7 @@ import CloseRightBlockButton from '@/components/CloseRightBlockButton'
 import Product from '@/components/cart/Product'
 
 export default {
+  name: 'Cart',
   components: {
     AmountBlock,
     CloseRightBlockButton,

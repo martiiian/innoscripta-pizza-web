@@ -5,7 +5,7 @@
       class="order__success-block right-block__bottom-button"
     >
       <span>Success!</span>
-      <button>to orders</button>
+      <button @click="toggleOrdersVisibility">to orders</button>
       <img
         src="~assets/images/icons/success.svg"
         class="order__button-icon"
@@ -59,7 +59,8 @@ export default {
   },
   methods: {
     ...mapActions({
-      toggleOrderVisibility: 'orders/toggleVisibility'
+      toggleOrderVisibility: 'orders/toggleVisibility',
+      toggleOrdersVisibility: 'orders/toggleOrdersVisibility'
     })
   }
 }

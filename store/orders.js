@@ -1,8 +1,10 @@
 import { commonMutators } from '@/helpers/store/mutators'
+import { getOrderSum } from '@/helpers/store/orders'
 
 export const state = () => ({
   orders: [],
   isVisible: false,
+  ordersIsVisible: false,
   deliveryPrice: 200,
   current: {
     phone: '',
@@ -22,6 +24,13 @@ export const actions = {
     commit('SET', {
       name: 'isVisible',
       value: !state.isVisible
+    })
+  },
+
+  toggleOrdersVisibility({ commit, state }) {
+    commit('SET', {
+      name: 'ordersIsVisible',
+      value: !state.ordersIsVisible
     })
   },
 
@@ -62,6 +71,13 @@ export const actions = {
 export const getters = {
   all: ({ orders }) => orders,
   isVisible: ({ isVisible }) => isVisible,
+  ordersIsVisible: ({ ordersIsVisible }) => ordersIsVisible,
   current: ({ current }) => current,
-  deliveryPrice: ({ deliveryPrice }) => deliveryPrice
+  deliveryPrice: ({ deliveryPrice }) => deliveryPrice,
+  sum: ({ orders }) => {
+    return orders.reduce((sum, order) => {
+      const orderSum = getOrderSum(order)
+      return sum + orderSum
+    }, 0)
+  }
 }

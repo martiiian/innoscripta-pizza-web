@@ -100,6 +100,7 @@ import OrderInput from '@/components/order/Input'
 import CloseRightBlockButton from '@/components/CloseRightBlockButton'
 
 export default {
+  name: 'Order',
   components: {
     AmountBlock,
     OrderInput,
