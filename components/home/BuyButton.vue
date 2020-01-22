@@ -9,7 +9,7 @@
     </span>
 
     <span class="buy-button__text">
-      {{ isAddedToCart ? '+++' : 'buy' }}
+      {{ isAddedToCart ? 'add' : 'select' }}
     </span>
 
     <img
@@ -53,6 +53,9 @@ export default {
     color: white;
     background: #4ebf4e;
     box-shadow: 0 4px 0 green;
+    .buy-button__text {
+      left: 42px;
+    }
   }
   &:hover {
     box-shadow: none;
@@ -68,9 +71,9 @@ export default {
   &__text {
     font-family: VampiroOne, Helvetica, sans-serif;
     position: absolute;
-    left: 30px;
-    top: 8px;
-    font-size: 24px;
+    left: 25px;
+    top: 11px;
+    font-size: 19px;
     color: $white-color;
   }
   &__arrow {

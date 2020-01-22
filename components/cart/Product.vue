@@ -145,12 +145,12 @@ export default {
     border: none;
     position: absolute;
     right: 20px;
-    top: 28px;
+    top: 25px;
   }
   &__sum {
     color: $dark-color;
     position: absolute;
-    bottom: 10px;
+    bottom: 16px;
     right: 25px;
     font-family: WorkSansBold, Helvetica, sans-serif;
     font-size: 24px;

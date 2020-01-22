@@ -75,6 +75,7 @@ export default {
 
 .cart {
   background: $orange-color;
+
   &__order-button {
     width: 100%;
     background: $dark-color;

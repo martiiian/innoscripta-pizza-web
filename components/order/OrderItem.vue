@@ -1,14 +1,14 @@
 <template>
   <div class="order-item row">
-    <div class="order-item__date col-md-4">
+    <div class="order-item__date col-sm-4">
       {{ date }}
     </div>
 
-    <div class="order-item__count-goods col-md-4">
+    <div class="order-item__count-goods col-sm-4">
       {{ count }} <span>pizza</span>
     </div>
 
-    <div class="order-item__amount col-md-4">
+    <div class="order-item__amount col-sm-4">
       {{ sum }}<span>{{ currency }}</span>
     </div>
   </div>
@@ -50,7 +50,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '~assets/styles/variables.scss';
+@import '~assets/styles/_core.scss';
 
 .order-item {
   position: relative;
@@ -60,6 +60,9 @@ export default {
     &::after {
       display: none;
     }
+  }
+  @include media-breakpoint-down('xs') {
+    text-align: center;
   }
   span {
     font-family: WorkSansRegular, Helvetica, sans-serif;
@@ -87,6 +90,9 @@ export default {
   }
   &__amount {
     text-align: right;
+    @include media-breakpoint-down('xs') {
+      text-align: center;
+    }
   }
 }
 </style>

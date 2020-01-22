@@ -68,16 +68,32 @@ export default {
 </script>
 
 <style lang="scss">
-@import '~assets/styles/variables.scss';
+@import '~assets/styles/_core.scss';
 
 .header {
   background: url('~assets/images/background.jpg') center no-repeat;
   background-size: cover;
   height: 533px;
+  @include media-breakpoint-down('xs') {
+    height: 468px;
+  }
   &__site-name {
     user-select: none;
     margin-top: -77px;
     margin-left: 93px;
+    @include media-breakpoint-down('sm') {
+      margin-top: -31px;
+    }
+    @include media-breakpoint-down('xs') {
+      margin-left: 40px;
+    }
+  }
+  &__logo {
+    @include media-breakpoint-down('xs') {
+      img {
+        width: 100%;
+      }
+    }
   }
   &__wrapper {
     display: flex;
@@ -91,6 +107,11 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
+    @include media-breakpoint-down('xs') {
+      padding-left: 0;
+      width: 100%;
+      align-items: center;
+    }
   }
   &__icons {
     z-index: 100;
@@ -104,13 +125,21 @@ export default {
     font-family: 'VampiroOne', Helvetica, Arial, sans-serif;
     line-height: 92px;
     transform: rotate(-13.17deg);
+    font-size: 96px;
+    color: $white-color;
+    text-shadow: 0 10px 0 $dark-color-2;
     span {
       font-family: 'VampiroOne', Helvetica, Arial, sans-serif;
       display: block;
     }
-    font-size: 96px;
-    color: $white-color;
-    text-shadow: 0 10px 0 $dark-color-2;
+    @include media-breakpoint-down('sm') {
+      font-size: 80px;
+      line-height: 75px;
+    }
+    @include media-breakpoint-down('xs') {
+      font-size: 60px;
+      line-height: 60px;
+    }
   }
 }
 .header-icon {

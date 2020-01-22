@@ -95,15 +95,16 @@ export default {
 @import '~assets/styles/variables.scss';
 
 .to-cart-popup {
-  width: 58%;
+  width: 100%;
   height: 100px;
   background: $white-color;
   border-radius: 15px;
   position: absolute;
-  bottom: 96px;
   border: 3px solid $orange-color;
+  bottom: -6px;
+  left: 1px;
   &__counter {
-    right: 100px;
+    left: 130px;
     top: 10px;
   }
 

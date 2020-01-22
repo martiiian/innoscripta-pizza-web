@@ -23,7 +23,7 @@ export default {
 
 <style lang="scss">
 .good-list {
-  justify-content: flex-start;
+  justify-content: space-around;
   align-items: flex-start;
   margin-top: -60px;
   display: flex;

@@ -102,8 +102,9 @@ export default {
 @import '~assets/styles/variables.scss';
 
 .good {
-  width: 33.3%;
-  padding: 0 7% 100px 7%;
+  max-width: 360px;
+  min-width: 320px;
+  margin: 0 5% 100px 5%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -160,7 +161,7 @@ export default {
   }
   &__bottom {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     padding-top: 20px;
   }
 }
