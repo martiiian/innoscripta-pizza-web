@@ -2,7 +2,7 @@
   <div class="product-counter">
     <button
       class="product-counter__button product-counter__button_plus"
-      @click="updateCounterValue(value - 1)"
+      @click="updateCounterValue(productCount - 1)"
     >
       -
     </button>
@@ -16,7 +16,7 @@
 
     <button
       class="product-counter__button product-counter__button_minus"
-      @click="updateCounterValue(value + 1)"
+      @click="updateCounterValue(productCount + 1)"
     >
       +
     </button>
@@ -31,16 +31,10 @@ export default {
       default: 1
     }
   },
-  data() {
-    return {
-      value: 0
-    }
-  },
   methods: {
     updateCounterValue(value) {
       if (value <= 0) return
 
-      this.value = +value
       this.$emit('counter-updated', value)
     }
   }
