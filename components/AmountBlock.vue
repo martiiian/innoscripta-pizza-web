@@ -5,18 +5,25 @@
     </div>
 
     <div class="summary-block__value summary-block__value_big col-md-6">
-      {{ sum }}<span>rub.</span>
+      {{ sum }}<span>{{ currency }}</span>
     </div>
   </div>
 </template>
 
 <script>
+import { currency } from '@/data/common'
+
 export default {
   name: 'AmountBlock',
   props: {
     sum: {
       type: Number,
       default: 0
+    }
+  },
+  data() {
+    return {
+      currency
     }
   }
 }

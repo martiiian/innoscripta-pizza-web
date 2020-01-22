@@ -8,7 +8,9 @@
       {{ count }} <span>pizza</span>
     </div>
 
-    <div class="order-item__amount col-md-4">{{ sum }}<span>rub.</span></div>
+    <div class="order-item__amount col-md-4">
+      {{ sum }}<span>{{ currency }}</span>
+    </div>
   </div>
 </template>
 
@@ -18,6 +20,7 @@ import {
   getOrderDate,
   getOrderSum
 } from '@/helpers/store/orders'
+import { currency } from '@/data/common'
 
 export default {
   name: 'Orderitem',
@@ -25,6 +28,11 @@ export default {
     order: {
       type: Object,
       default: () => ({})
+    }
+  },
+  data() {
+    return {
+      currency
     }
   },
   computed: {

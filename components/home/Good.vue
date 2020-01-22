@@ -26,7 +26,7 @@
       <div class="good__price">
         <div class="good__from">from</div>
 
-        {{ defaultPrice }}<span class="good__currency">rub.</span>
+        {{ defaultPrice }}<span class="good__currency">{{ currency }}</span>
       </div>
 
       <BuyButton :is-added-to-cart="good.isAddedToCart" @clicked="openPopup" />
@@ -43,6 +43,7 @@
 
 <script>
 import { mapActions } from 'vuex'
+import { currency } from '@/data/common'
 import BuyButton from '@/components/home/BuyButton'
 import Ingredient from '@/components/home/Ingredient'
 import ProductImage from '@/components/ProductImage'
@@ -63,7 +64,8 @@ export default {
   },
   data() {
     return {
-      popupIsOpen: false
+      popupIsOpen: false,
+      currency
     }
   },
   computed: {

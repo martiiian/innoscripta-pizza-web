@@ -25,7 +25,7 @@
     </button>
 
     <div class="good__price to-cart-popup__price">
-      {{ sum }}<span class="good__currency">rub.</span>
+      {{ sum }}<span class="good__currency">{{ currency }}</span>
     </div>
 
     <button
@@ -38,6 +38,7 @@
 </template>
 
 <script>
+import { currency } from '@/data/common'
 import ProductCounter from '@/components/home/ProductCounter'
 import SizeSelector from '@/components/home/SizeSelector'
 
@@ -58,6 +59,7 @@ export default {
   },
   data() {
     return {
+      currency,
       productData: {
         count: 1,
         sizeId: null

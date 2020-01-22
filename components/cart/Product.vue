@@ -31,12 +31,15 @@
       </button>
     </div>
 
-    <div class="cart-product__sum">{{ product.sum }}<span>rub.</span></div>
+    <div class="cart-product__sum">
+      {{ product.sum }}<span>{{ currency }}</span>
+    </div>
   </div>
 </template>
 
 <script>
 import { mapActions } from 'vuex'
+import { currency } from '@/data/common'
 import ProductCounter from '@/components/home/ProductCounter'
 import ProductImage from '@/components/ProductImage'
 
@@ -49,6 +52,11 @@ export default {
     product: {
       type: Object,
       default: () => ({})
+    }
+  },
+  data() {
+    return {
+      currency
     }
   },
   methods: {

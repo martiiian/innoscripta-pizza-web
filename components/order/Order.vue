@@ -67,7 +67,7 @@
           </span>
 
           <span class="summary-block__value col-md-6">
-            {{ goodsSum }}<span>rub</span>
+            {{ goodsSum }}<span>{{ currency }}</span>
           </span>
         </div>
 
@@ -77,7 +77,7 @@
           </span>
 
           <span class="summary-block__value col-md-6">
-            {{ deliveryPrice }}<span>rub</span>
+            {{ deliveryPrice }}<span>{{ currency }}</span>
           </span>
         </div>
 
@@ -94,6 +94,7 @@ import { mapGetters, mapActions } from 'vuex'
 import { mapPropsModels } from '@/helpers/mapPropsModelsHelper'
 import { orderFormValidationRules } from '@/validator/rules/orderForm'
 import { validator, hasValidationErrors } from '@/validator/validator'
+import { currency } from '@/data/common'
 import AmountBlock from '@/components/AmountBlock'
 import OrderBottomButtons from '@/components/order/OrderBottomButtons'
 import OrderInput from '@/components/order/Input'
@@ -110,6 +111,7 @@ export default {
   data() {
     return {
       validationErrors: {},
+      currency,
       status: 'preparing' // loading, fail, success
     }
   },
