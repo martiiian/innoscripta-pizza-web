@@ -52,15 +52,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-@import '~assets/styles/variables.scss';
-
-.orders {
-  z-index: 150;
-  background: $dark-color;
-  &__summary {
-    color: $white-color;
-  }
-}
-</style>

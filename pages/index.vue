@@ -31,6 +31,6 @@ export default {
 
 <style lang="scss">
 .home {
-  padding: 0;
+  padding: 0 !important;
 }
 </style>

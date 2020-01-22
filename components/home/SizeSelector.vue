@@ -14,6 +14,7 @@
 
 <script>
 export default {
+  name: 'SizeSelector',
   props: {
     sizes: {
       type: Array,
@@ -41,42 +42,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-@import '~assets/styles/variables.scss';
-
-.size-selector {
-  position: absolute;
-  display: flex;
-  left: 5px;
-  top: 5px;
-  &__item {
-    outline: none;
-    position: relative;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    padding: 5px;
-    margin: 5px;
-    cursor: pointer;
-    user-select: none;
-    border: 3px solid transparent;
-    background: $dark-color;
-    color: $white-color;
-    font-weight: bold;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    span {
-      color: $dark-color;
-      position: absolute;
-      font-size: 0.7em;
-      bottom: -14px;
-      left: 4px;
-    }
-    &_active {
-      border: 3px solid gray;
-    }
-  }
-}
-</style>

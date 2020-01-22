@@ -50,6 +50,7 @@ import ProductImage from '@/components/ProductImage'
 import ToCartPopup from '@/components/home/ToCartPopup'
 
 export default {
+  name: 'Good',
   components: {
     BuyButton,
     Ingredient,
@@ -97,79 +98,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-@import '~assets/styles/variables.scss';
-
-.good {
-  max-width: 360px;
-  min-width: 320px;
-  margin: 0 5% 100px 5%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  position: relative;
-  transition: 0.2s ease transform;
-  &:hover {
-    transform: translateY(-5px);
-  }
-  &__ingredients {
-    padding-top: 15px;
-  }
-  &__name {
-    line-height: 25px;
-    padding-top: 18px;
-    text-align: center;
-    font-family: Unkempt, Helvetica, sans-serif;
-    font-size: 36px;
-  }
-  &__description {
-    padding-top: 15px;
-    text-align: center;
-  }
-  &__price {
-    color: $dark-color;
-    font-family: WorkSansBold, Helvetica, sans-serif;
-    font-style: normal;
-    font-size: 36px;
-    line-height: 21px;
-    font-weight: bold;
-  }
-  &__from {
-    font-family: WorkSansBold, Helvetica, sans-serif;
-    font-size: 14px;
-    font-weight: normal;
-  }
-  &__currency {
-    font-family: WorkSansRegular, Helvetica, sans-serif;
-    font-size: 14px;
-    font-weight: normal;
-  }
-  &__image {
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.12);
-    border-radius: 15px;
-    overflow: hidden;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    img {
-      border-radius: 15px;
-      width: 100%;
-      height: auto;
-    }
-  }
-  &__bottom {
-    display: flex;
-    justify-content: space-around;
-    padding-top: 20px;
-  }
-}
-.ingredients {
-  color: $dark-color;
-  padding: 10px 0;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-</style>

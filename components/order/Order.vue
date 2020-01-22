@@ -96,17 +96,17 @@ import { orderFormValidationRules } from '@/validator/rules/orderForm'
 import { validator, hasValidationErrors } from '@/validator/validator'
 import { currency } from '@/data/common'
 import AmountBlock from '@/components/AmountBlock'
+import CloseRightBlockButton from '@/components/CloseRightBlockButton'
 import OrderBottomButtons from '@/components/order/OrderBottomButtons'
 import OrderInput from '@/components/order/Input'
-import CloseRightBlockButton from '@/components/CloseRightBlockButton'
 
 export default {
   name: 'Order',
   components: {
     AmountBlock,
+    CloseRightBlockButton,
     OrderInput,
-    OrderBottomButtons,
-    CloseRightBlockButton
+    OrderBottomButtons
   },
   data() {
     return {
@@ -187,106 +187,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-@import '~assets/styles/variables.scss';
-
-.order {
-  background: $dark-color;
-  z-index: 102;
-  &__content {
-    padding-left: 20px;
-  }
-  &__delivery-delimeter {
-    display: flex;
-    justify-content: space-around;
-    padding: 18px 18px 10px 18px;
-    align-items: center;
-    span {
-      color: $white-color;
-      font-size: 13px;
-      padding: 0 30px;
-      width: 30%;
-      text-align: center;
-    }
-    hr {
-      width: 30%;
-      border: 0;
-      height: 1px;
-      background: white;
-    }
-  }
-  &__to-cart-button {
-    width: 30%;
-    min-width: 60px;
-    background: $orange-color;
-    border: none;
-    position: relative;
-    cursor: pointer;
-    flex-direction: row-reverse;
-    &:hover {
-      .order__to-cart-button-icon {
-        transform: rotate(-90deg) translateY(-6px);
-      }
-    }
-  }
-  &__to-cart-button-icon {
-    transform: rotate(-90deg);
-  }
-  &__button-icon {
-    transition: 0.3s ease transform;
-  }
-  &__success-block {
-    width: 100%;
-    height: 57px;
-    background: $green-color;
-    span {
-      flex-grow: 10;
-      font-family: WorkSansBold, Helvetica, sans-serif;
-    }
-    button {
-      cursor: pointer;
-      padding: 0 10px;
-      color: $white-color;
-      border: none;
-      text-decoration: underline;
-      background: none;
-    }
-  }
-  &__send-button {
-    width: 70%;
-    background: $green-color;
-    &:hover {
-      .order__send-button-icon {
-        transform: rotate(90deg) translateY(-6px);
-      }
-    }
-    &_sending {
-      cursor: default;
-      animation: sending 1s ease-in-out infinite;
-      .order__send-button-icon {
-        display: none;
-      }
-      @keyframes sending {
-        50% {
-          background: green;
-        }
-        100% {
-          background: $green-color;
-        }
-      }
-    }
-    &[disabled] {
-      cursor: default;
-      background: #9b9b9b;
-    }
-  }
-  &__send-button-icon {
-    transform: rotate(90deg);
-  }
-}
-
-.order-summary {
-  color: $white-color;
-}
-</style>

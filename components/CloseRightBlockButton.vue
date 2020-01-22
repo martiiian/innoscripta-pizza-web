@@ -14,15 +14,3 @@ export default {
   name: 'CloseRightBlockButton'
 }
 </script>
-
-<style lang="scss">
-.close-right-block-button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  position: fixed;
-  right: 23px;
-  top: 23px;
-  padding: 10px;
-}
-</style>

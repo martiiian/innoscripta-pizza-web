@@ -32,7 +32,7 @@
       class="to-cart-popup__ok-button"
       @click="$emit('ok-clicked', productData)"
     >
-      ok
+      buy
     </button>
   </div>
 </template>
@@ -43,6 +43,7 @@ import ProductCounter from '@/components/home/ProductCounter'
 import SizeSelector from '@/components/home/SizeSelector'
 
 export default {
+  name: 'ToCartPopup',
   components: {
     ProductCounter,
     SizeSelector
@@ -90,52 +91,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-@import '~assets/styles/variables.scss';
-
-.to-cart-popup {
-  width: 100%;
-  height: 100px;
-  background: $white-color;
-  border-radius: 15px;
-  position: absolute;
-  border: 3px solid $orange-color;
-  bottom: -6px;
-  left: 1px;
-  &__counter {
-    left: 130px;
-    top: 10px;
-  }
-
-  &__price {
-    position: absolute;
-    bottom: 5px;
-    left: 10px;
-  }
-
-  &__close-button {
-    position: absolute;
-    border: none;
-    background: none;
-    width: 20px;
-    height: 20px;
-    right: 10px;
-    top: 10px;
-    cursor: pointer;
-  }
-  &__ok-button {
-    position: absolute;
-    right: 10px;
-    bottom: 10px;
-    background: $orange-color;
-    border-radius: 5px;
-    border: none;
-    width: 41px;
-    height: 28px;
-    cursor: pointer;
-    font-weight: bold;
-    color: $white-color;
-  }
-}
-</style>

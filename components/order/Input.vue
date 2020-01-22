@@ -20,6 +20,7 @@
 
 <script>
 export default {
+  name: 'Input',
   props: {
     label: {
       type: String,
@@ -45,33 +46,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-@import '~assets/styles/variables.scss';
-
-.input {
-  &__input {
-    margin-top: 3px;
-    height: 50px;
-    border-radius: 10px;
-    border: none;
-    padding: 5px 10px;
-    font-size: 20px;
-    color: #6c5f5f;
-    &_errored {
-      border: 3px solid red;
-    }
-  }
-  &__error {
-    color: red;
-    height: 17px;
-  }
-  &__label {
-    color: $white-color;
-    font-size: 13px;
-    display: flex;
-    flex-direction: column;
-    margin: 5px 0;
-  }
-}
-</style>

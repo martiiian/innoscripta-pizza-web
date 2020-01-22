@@ -69,35 +69,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-@import '~assets/styles/variables.scss';
-
-.cart {
-  background: $orange-color;
-
-  &__order-button {
-    width: 100%;
-    background: $dark-color;
-    color: $white-color;
-    &:hover {
-      .right-block__bottom-button-arrow {
-        transform: rotate(90deg) translateY(-6px);
-      }
-    }
-    &[disabled] {
-      cursor: default;
-      background: #9b9b9b;
-      &:hover {
-        .right-block__bottom-button-arrow {
-          transform: translateX(0px) rotate(90deg);
-        }
-      }
-    }
-  }
-}
-
-.cart-amount {
-  color: $dark-color;
-}
-</style>

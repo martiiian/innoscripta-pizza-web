@@ -1,0 +1,7 @@
+.orders {
+  z-index: 150;
+  background: $dark-color;
+  &__summary {
+    color: $white-color;
+  }
+}

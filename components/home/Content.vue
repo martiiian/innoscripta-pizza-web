@@ -9,6 +9,7 @@ import { mapGetters } from 'vuex'
 import Good from '@/components/home/Good'
 
 export default {
+  name: 'Content',
   components: {
     Good
   },
@@ -20,13 +21,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-.good-list {
-  justify-content: space-around;
-  align-items: flex-start;
-  margin-top: -60px;
-  display: flex;
-  flex-wrap: wrap;
-}
-</style>
