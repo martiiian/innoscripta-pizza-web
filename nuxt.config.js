@@ -33,27 +33,50 @@ export default {
   /*
    ** Nuxt.js dev-modules
    */
-  buildModules: [
-    // Doc: https://github.com/nuxt-community/eslint-module
-    '@nuxtjs/eslint-module'
-  ],
+  buildModules: ['@nuxtjs/eslint-module'],
   /*
    ** Nuxt.js modules
    */
-  modules: [
-    // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios',
-    '@nuxtjs/pwa',
-    // Doc: https://github.com/nuxt-community/dotenv-module
-    '@nuxtjs/dotenv'
-  ],
+  modules: ['@nuxtjs/axios', '@nuxtjs/pwa', '@nuxtjs/dotenv', '@nuxtjs/auth'],
+
+  /*
+   ** Axios module config
+   */
   axios: {
     baseURL: process.env.API_URL
   },
+
+  /**
+   * Auth config
+   */
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: {
+            url: '/auth/login',
+            method: 'post',
+            propertyName: 'access_token'
+          },
+          logout: {
+            url: '/auth/logout',
+            method: 'post'
+          },
+          user: {
+            url: '/auth/me',
+            method: 'post'
+          }
+        },
+        tokenType: 'bearer'
+      }
+    }
+  },
+
   /*
    ** Build configuration
    */
   build: {
+    extractCSS: true,
     /*
      ** You can extend webpack config here
      */

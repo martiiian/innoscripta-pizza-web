@@ -5,6 +5,7 @@
     <Cart />
     <Order />
     <Orders />
+    <SignIn />
   </div>
 </template>
 
@@ -14,6 +15,7 @@ import Content from '@/components/home/Content'
 import Header from '@/components/header/Header'
 import Order from '@/components/order/Order'
 import Orders from '@/components/order/Orders'
+import SignIn from '@/components/auth/SignIn'
 
 export default {
   components: {
@@ -21,7 +23,8 @@ export default {
     Cart,
     Header,
     Order,
-    Orders
+    Orders,
+    SignIn
   },
   async fetch({ store }) {
     await store.dispatch('goods/load')

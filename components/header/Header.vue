@@ -32,6 +32,13 @@
           {{ countProductsInCart }}
         </span>
       </button>
+
+      <button
+        class="header-icon header-icon_type_login"
+        @click="toggleSignInVisibility"
+      >
+        <img src="~assets/images/icons/login.svg" alt="login" />
+      </button>
     </div>
   </header>
 </template>
@@ -62,7 +69,8 @@ export default {
   },
   methods: {
     ...mapActions({
-      toggleCartVisibility: 'cart/toggleVisibility'
+      toggleCartVisibility: 'cart/toggleVisibility',
+      toggleSignInVisibility: 'users/toggleVisibility'
     })
   }
 }
