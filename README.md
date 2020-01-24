@@ -1,6 +1,8 @@
 # pizza-web
 
-> Pizza store
+> Pizza store>
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/ad093eb21a414a15a5b70767627705d1)](https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=martiiian/innoscripta-pizza-web&amp;utm_campaign=Badge_Grade)
 
 ## Build Setup
 
