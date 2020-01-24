@@ -1,21 +1,25 @@
 <template>
-  <div v-if="isVisible" class="orders right-block">
-    <CloseRightBlockButton @clicked="closeRightSidebar" />
+  <transition name="fade">
+    <div v-if="isVisible" class="orders right-block">
+      <CloseRightBlockButton @clicked="closeRightSidebar" />
 
-    <div class="right-block__title">
-      Orders
-    </div>
+      <div class="right-block__title">
+        Orders
+      </div>
 
-    <div class="cart__products right-block__content_white right-block__content">
-      <OrderItem v-for="order in orders" :key="order.id" :order="order" />
-    </div>
+      <div
+        class="cart__products right-block__content_white right-block__content"
+      >
+        <OrderItem v-for="order in orders" :key="order.id" :order="order" />
+      </div>
 
-    <div class="right-block__bottom">
-      <div class="orders__summary right-block__bottom-text">
-        <AmountBlock :sum="sum"></AmountBlock>
+      <div class="right-block__bottom">
+        <div class="orders__summary right-block__bottom-text">
+          <AmountBlock :sum="sum"></AmountBlock>
+        </div>
       </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>

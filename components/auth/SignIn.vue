@@ -1,47 +1,49 @@
 <template>
-  <div v-if="isVisible" class="sign-in right-block">
-    <CloseRightBlockButton @clicked="closeRightSidebar" />
+  <transition name="fade">
+    <div v-if="isVisible" class="sign-in right-block">
+      <CloseRightBlockButton @clicked="toggleVisibility" />
 
-    <div class="right-block__title">
-      Sign in
-    </div>
-
-    <div class="right-block__content">
-      <div class="row">
-        <OrderInput
-          v-model="userData.phone"
-          class="col-md-6"
-          label="Phone(like +79112344565)"
-          :errors="validationErrors['phone']"
-        />
+      <div class="right-block__title">
+        Sign in
       </div>
 
-      <div class="row">
-        <OrderInput
-          v-model="userData.password"
-          class="col-md-6"
-          label="Password"
-          :errors="validationErrors['password']"
-        />
-      </div>
-    </div>
-
-    <div class="right-block__bottom">
-      <div class="right-block__bottom-buttons">
-        <button
-          class="order__send-button right-block__bottom-button"
-          @click="signIn"
-        >
-          Login
-          <img
-            src="~assets/images/icons/arrow.svg"
-            class="order__send-button-icon order__button-icon"
-            alt="arrow"
+      <div class="right-block__content">
+        <div class="row">
+          <OrderInput
+            v-model="userData.phone"
+            class="col-md-6"
+            label="Phone(like +79112344565)"
+            :errors="validationErrors['phone']"
           />
-        </button>
+        </div>
+
+        <div class="row">
+          <OrderInput
+            v-model="userData.password"
+            class="col-md-6"
+            label="Password"
+            :errors="validationErrors['password']"
+          />
+        </div>
+      </div>
+
+      <div class="right-block__bottom">
+        <div class="right-block__bottom-buttons">
+          <button
+            class="order__send-button right-block__bottom-button"
+            @click="signIn"
+          >
+            Login
+            <img
+              src="~assets/images/icons/arrow.svg"
+              class="order__send-button-icon order__button-icon"
+              alt="arrow"
+            />
+          </button>
+        </div>
       </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>

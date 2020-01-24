@@ -1,92 +1,99 @@
 <template>
-  <div v-if="isVisible" class="order right-block">
-    <CloseRightBlockButton @clicked="closeRightSidebar" />
+  <transition name="fade">
+    <div v-if="isVisible" class="order right-block">
+      <CloseRightBlockButton @clicked="closeRightSidebar" />
 
-    <div class="right-block__title">
-      Order information
-    </div>
-
-    <div class="order__content right-block__content">
-      <div class="row">
-        <OrderInput
-          v-model="name"
-          class="col-lg-6 col-xs-12"
-          label="Name"
-          :errors="validationErrors['name']"
-        />
+      <div class="right-block__title">
+        Order information
       </div>
 
-      <div class="row">
-        <OrderInput
-          v-model="phone"
-          class="col-lg-6 col-xs-12"
-          label="Phone(like +79112344565)"
-          :errors="validationErrors['phone']"
-        />
-      </div>
-
-      <div class="row">
-        <OrderInput
-          v-model="email"
-          class="col-lg-6 col-xs-12"
-          label="Email"
-          :errors="validationErrors['email']"
-        />
-      </div>
-
-      <div class="order__delivery-delimeter col-md-12">
-        <hr />
-        <span>delivery info</span>
-        <hr />
-      </div>
-
-      <div class="row">
-        <OrderInput
-          v-model="city"
-          class="col-lg-6 col-xs-12"
-          label="City"
-          :errors="validationErrors['city']"
-        />
-      </div>
-
-      <div class="row">
-        <OrderInput
-          v-model="address"
-          class="col-lg-6 col-xs-12"
-          label="Address"
-          :errors="validationErrors['address']"
-        />
-      </div>
-    </div>
-
-    <div class="right-block__bottom">
-      <div v-if="goodsSum" class="order-summary right-block__bottom-text">
+      <div class="order__content right-block__content">
         <div class="row">
-          <span class="summary-block__text col-xs-6">
-            goods
-          </span>
-
-          <span class="summary-block__value col-xs-6">
-            {{ goodsSum }}<span>{{ currency }}</span>
-          </span>
+          <OrderInput
+            v-model="name"
+            class="col-lg-6 col-xs-12"
+            label="Name"
+            :errors="validationErrors['name']"
+          />
         </div>
 
         <div class="row">
-          <span class="summary-block__text col-xs-6">
-            delivery
-          </span>
-
-          <span class="summary-block__value col-xs-6">
-            {{ deliveryPrice }}<span>{{ currency }}</span>
-          </span>
+          <OrderInput
+            v-model="phone"
+            class="col-lg-6 col-xs-12"
+            label="Phone(like +79112344565)"
+            :errors="validationErrors['phone']"
+          />
         </div>
 
-        <AmountBlock :sum="sum"></AmountBlock>
+        <div class="row">
+          <OrderInput
+            v-model="email"
+            class="col-lg-6 col-xs-12"
+            label="Email"
+            :errors="validationErrors['email']"
+          />
+        </div>
+
+        <div class="order__delivery-delimeter col-md-12">
+          <hr />
+          <span>delivery info</span>
+          <hr />
+        </div>
+
+        <div class="row">
+          <OrderInput
+            v-model="city"
+            class="col-lg-6 col-xs-12"
+            label="City"
+            :errors="validationErrors['city']"
+          />
+        </div>
+
+        <div class="row">
+          <OrderInput
+            v-model="address"
+            class="col-lg-6 col-xs-12"
+            label="Address"
+            :errors="validationErrors['address']"
+          />
+        </div>
       </div>
 
-      <OrderBottomButtons :status="status" @send-clicked="sendOrder" />
+      <div class="right-block__bottom">
+        <div v-if="goodsSum" class="order-summary right-block__bottom-text">
+          <div class="row">
+            <span class="summary-block__text col-xs-6">
+              goods
+            </span>
+
+            <span class="summary-block__value col-xs-6">
+              {{ goodsSum }}<span>{{ currency }}</span>
+            </span>
+          </div>
+
+          <div class="row">
+            <span class="summary-block__text col-xs-6">
+              delivery
+            </span>
+
+            <span class="summary-block__value col-xs-6">
+              {{ deliveryPrice }}<span>{{ currency }}</span>
+            </span>
+          </div>
+
+          <AmountBlock :sum="sum"></AmountBlock>
+        </div>
+
+        <OrderBottomButtons
+          :status="status"
+          @send-clicked="sendOrder"
+          @to-orders-clicked="toOrderHandler"
+          @to-cart-clicked="toCartHandler"
+        />
+      </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>
@@ -144,10 +151,21 @@ export default {
     ...mapActions({
       updateOrderItem: 'orders/updateCurrentItem',
       toggleOrderVisibility: 'orders/toggleVisibility',
+      toggleOrdersVisibility: 'orders/toggleOrdersVisibility',
       toggleCartVisibility: 'cart/toggleVisibility',
       sendToServer: 'orders/send',
       resetCart: 'cart/reset'
     }),
+
+    toCartHandler() {
+      this.toggleOrderVisibility()
+      this.setStatus('preparing')
+    },
+
+    toOrderHandler() {
+      this.toggleOrdersVisibility()
+      this.setStatus('preparing')
+    },
 
     closeRightSidebar() {
       this.toggleCartVisibility()

@@ -1,24 +1,8 @@
 <template>
   <div class="right-block__bottom-buttons">
-    <div
-      v-if="status === 'success'"
-      class="order__success-block right-block__bottom-button"
-    >
-      <span>Success!</span>
-      <button @click="toggleOrdersVisibility">to orders</button>
-      <img
-        src="~assets/images/icons/success.svg"
-        class="order__button-icon"
-        alt="success icon"
-        width="24"
-        height="24"
-      />
-    </div>
-
     <button
-      v-if="status !== 'success'"
       class="order__to-cart-button right-block__bottom-button"
-      @click="toggleOrderVisibility"
+      @click="$emit('to-cart-clicked')"
     >
       Cart
       <img
@@ -29,26 +13,43 @@
     </button>
 
     <button
-      v-if="status !== 'success'"
       class="order__send-button right-block__bottom-button"
       :disabled="status === 'loading'"
-      :class="{ 'order__send-button_sending': status === 'loading' }"
-      @click="$emit('send-clicked')"
+      :class="{
+        'order__send-button_sending': status === 'loading',
+        'order__send-button_success': status === 'success'
+      }"
+      @click="sendButtonHandler"
     >
-      {{ status === 'loading' ? 'Sending...' : 'Send' }}
+      <span>{{ buttonText }}</span>
+
       <img
         v-show="status === 'preparing' || status === 'fail'"
         src="~assets/images/icons/arrow.svg"
         class="order__send-button-icon order__button-icon"
         alt="arrow"
       />
+
+      <a
+        v-show="status === 'success'"
+        @click.prevent="$emit('to-orders-clicked')"
+      >
+        to orders
+      </a>
+
+      <img
+        v-show="status === 'success'"
+        src="~assets/images/icons/success.svg"
+        class="order__button-icon"
+        alt="success icon"
+        width="24"
+        height="24"
+      />
     </button>
   </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex'
-
 export default {
   name: 'OrderBottomButtons',
   props: {
@@ -57,11 +58,21 @@ export default {
       default: 'preparing'
     }
   },
+  computed: {
+    buttonText() {
+      return this.status === 'loading'
+        ? 'Sending...'
+        : this.status === 'success'
+        ? 'Success'
+        : 'Send'
+    }
+  },
   methods: {
-    ...mapActions({
-      toggleOrderVisibility: 'orders/toggleVisibility',
-      toggleOrdersVisibility: 'orders/toggleOrdersVisibility'
-    })
+    sendButtonHandler() {
+      if (this.status === 'success') return
+
+      this.$emit('send-clicked')
+    }
   }
 }
 </script>

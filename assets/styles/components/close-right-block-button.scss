@@ -6,4 +6,8 @@
   right: 23px;
   top: 23px;
   padding: 10px;
+  @include media-breakpoint-down('xs') {
+    right: 15px;
+    top: 6px;
+  }
 }

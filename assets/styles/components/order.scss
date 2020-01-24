@@ -49,23 +49,6 @@
   &__button-icon {
     transition: 0.3s ease transform;
   }
-  &__success-block {
-    width: 100%;
-    height: 57px;
-    background: $green-color;
-    span {
-      flex-grow: 10;
-      font-family: WorkSansBold, Helvetica, sans-serif;
-    }
-    button {
-      cursor: pointer;
-      padding: 0 10px;
-      color: $white-color;
-      border: none;
-      text-decoration: underline;
-      background: none;
-    }
-  }
   &__send-button {
     width: 70%;
     background: $green-color;
@@ -75,6 +58,30 @@
     &:hover {
       .order__send-button-icon {
         transform: rotate(90deg) translateY(-6px);
+      }
+    }
+    &_success {
+      cursor: default;
+      span {
+        flex-grow: 10;
+        font-family: WorkSansBold, Helvetica, sans-serif;
+      }
+      a {
+        font-size: 0.6em;
+        cursor: pointer;
+        padding: 0 10px;
+        color: $white-color;
+        border: none;
+        text-decoration: underline;
+        background: none;
+      }
+      @include media-breakpoint-down('xs') {
+        span {
+          display: none;
+        }
+        a {
+          font-size: 0.7em;
+        }
       }
     }
     &_sending {
