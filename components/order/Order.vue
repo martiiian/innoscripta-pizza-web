@@ -7,7 +7,9 @@
         Order information
       </div>
 
-      <div class="order__content right-block__content">
+      <div
+        class="order__content right-block__content right-block__content_with-padding"
+      >
         <div class="row">
           <OrderInput
             v-model="name"
@@ -146,6 +148,13 @@ export default {
         address: this.address
       }
     }
+  },
+  beforeMount() {
+    if (!this.$auth.loggedIn) return
+
+    this.phone = this.$auth.user.phone
+    this.email = this.$auth.user.email
+    this.name = this.$auth.user.name
   },
   methods: {
     ...mapActions({

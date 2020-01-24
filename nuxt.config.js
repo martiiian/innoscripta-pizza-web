@@ -51,6 +51,25 @@ export default {
    */
   auth: {
     strategies: {
+      registration: {
+        _scheme: 'local',
+        endpoints: {
+          login: {
+            url: '/auth/registration',
+            method: 'post',
+            propertyName: 'access_token'
+          },
+          logout: {
+            url: '/auth/logout',
+            method: 'post'
+          },
+          user: {
+            url: '/auth/me',
+            method: 'post',
+            propertyName: 'data'
+          }
+        }
+      },
       local: {
         endpoints: {
           login: {
@@ -64,7 +83,8 @@ export default {
           },
           user: {
             url: '/auth/me',
-            method: 'post'
+            method: 'post',
+            propertyName: 'data'
           }
         },
         tokenType: 'bearer'

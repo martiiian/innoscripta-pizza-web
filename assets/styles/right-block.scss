@@ -20,6 +20,12 @@
     flex-grow: 10;
     overflow-y: auto;
     overflow-x: hidden;
+    &_with-padding {
+      padding-left: 20px;
+      @include media-breakpoint-down('md') {
+        padding-right: 20px;
+      }
+    }
     &_white {
       margin-top: 15px;
       width: 85%;
@@ -79,6 +85,17 @@
     justify-content: space-between;
     padding: 0 20px;
     align-items: center;
+    &:hover {
+      .right-block__bottom-button-arrow {
+        transform: rotate(90deg) translateY(-6px);
+      }
+    }
+    &_green {
+      background: $green-color;
+    }
+    &_wide {
+      width: 100%;
+    }
     @include media-breakpoint-down('xs') {
       font-size: 22px;
     }

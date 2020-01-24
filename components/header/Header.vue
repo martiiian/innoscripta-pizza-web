@@ -37,7 +37,21 @@
         class="header-icon header-icon_type_login"
         @click="toggleSignInVisibility"
       >
-        <img src="~assets/images/icons/login.svg" alt="login" />
+        <img
+          v-show="!$auth.loggedIn"
+          src="~assets/images/icons/login.svg"
+          alt="login"
+          width="24"
+          height="24"
+        />
+
+        <img
+          v-show="$auth.loggedIn"
+          src="~assets/images/icons/user.svg"
+          alt="profile"
+          width="24"
+          height="24"
+        />
       </button>
     </div>
   </header>

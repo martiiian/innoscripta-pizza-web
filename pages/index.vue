@@ -15,7 +15,7 @@ import Content from '@/components/home/Content'
 import Header from '@/components/header/Header'
 import Order from '@/components/order/Order'
 import Orders from '@/components/order/Orders'
-import SignIn from '@/components/auth/SignIn'
+import SignIn from '@/components/user/Auth'
 
 export default {
   components: {
@@ -26,8 +26,9 @@ export default {
     Orders,
     SignIn
   },
-  async fetch({ store }) {
+  async fetch({ store, $auth }) {
     await store.dispatch('goods/load')
+    $auth.loggedIn && (await store.dispatch('orders/load'))
   }
 }
 </script>

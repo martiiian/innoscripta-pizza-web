@@ -4,7 +4,7 @@
 
     <input
       :value="value"
-      type="text"
+      :type="type"
       class="input__input"
       :class="{ input__input_errored: errors.length }"
       @input="$emit('input', $event.target.value)"
@@ -33,6 +33,10 @@ export default {
     value: {
       type: String,
       default: ''
+    },
+    type: {
+      type: String,
+      default: 'text'
     }
   },
   computed: {

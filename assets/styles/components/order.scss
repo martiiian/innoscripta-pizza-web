@@ -2,10 +2,6 @@
   background: $dark-color;
   z-index: 102;
   &__content {
-    padding-left: 20px;
-    @include media-breakpoint-down('md') {
-      padding-right: 20px;
-    }
   }
   &__delivery-delimeter {
     display: flex;

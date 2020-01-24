@@ -5,7 +5,7 @@ export const state = () => ({
   orders: [],
   isVisible: false,
   ordersIsVisible: false,
-  deliveryPrice: 200,
+  deliveryPrice: 2,
   current: {
     phone: '',
     name: '',
@@ -18,7 +18,20 @@ export const state = () => ({
 export const mutations = commonMutators
 
 export const actions = {
-  load({ commit }) {},
+  async load({ commit }) {
+    const { data: orders } = await this.$axios.get('/orders/user')
+    commit('SET', {
+      name: 'orders',
+      value: orders.data
+    })
+  },
+
+  reset({ commit }) {
+    commit('SET', {
+      name: 'orders',
+      value: []
+    })
+  },
 
   toggleVisibility({ commit, state }) {
     commit('SET', {
